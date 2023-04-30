@@ -1,21 +1,22 @@
 import boto3
 import json
+import os
 
 
 def lambda_handler(event, context):
     # Quicksight config
-    identity_region = 'us-east-1'
+    identity_region = os.environ['REGION']
     qs_client = boto3.client("quicksight", region_name=identity_region)
 
     # variables
-    account_id = event['Account_Id']
-    user_name = event['User_Name']
-    first_analysis_id = event['First_Analysis_Id']
-    second_analysis_id = event['Second_Analysis_Id']
-    source_analysis_id = event['Source_Analysis_Id']
-    target_analysis_name = event['Target_Analysis_Name']
-    target_analysis_id = event['Target_Analysis_id']
-    action = event['Action']
+    account_id = os.environ['ACCOUNT_ID']
+    user_name = os.environ['USER_NAME']
+    first_analysis_id = os.environ['FIRST_ANALYSIS_ID']
+    second_analysis_id = os.environ['SECOND_ANALYSIS_ID']
+    source_analysis_id = os.environ['SOURCE_ANALYSIS_ID']
+    target_analysis_name = os.environ['TARGET_ANALYSIS_NAME']
+    target_analysis_id = os.environ['TARGET_ANALYSIS_ID']
+    action = os.environ['ACTION']
 
     # qualify the update call
     if action == 'Update':
@@ -848,17 +849,3 @@ def merge_analyses_update(account_id, source_analysis_id, target_analysis_id, ta
 
     except Exception as e:
         return json.loads(json.dumps(e, indent=4, default=str))
-
-
-event = {
-    "Account_Id": "733585711144",
-    "User_Name": "Admin/lavidhya-Isengard",
-    "First_Analysis_Id": "",
-    "Second_Analysis_Id": "",
-    "Source_Analysis_Id": "analysis_test_lambda_api_qs_test_4",
-    "Target_Analysis_Name": "New Analysis From Merge",
-    "Target_Analysis_id": "new-analysis-from-merge",
-    "Action": "Update"
-}
-
-lambda_handler(event, "")
