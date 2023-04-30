@@ -1,7 +1,40 @@
 
-# Welcome to your CDK Python project!
+# Collaborative Authoring in Amazon QuickSight!
 
-This is a blank project for CDK development with Python.
+## About the project
+Today authors cannot merge two analyses together to create a new analysis in QuickSight. Traditionally, they would replicate all the visual from first analysis in the second one. 
+1. What if there are 100 visuals in the each analyses? 
+2. What if there are two authors who want to collaborate and complete one dashboard soon? 
+
+This tool can help the authors to merge the analyses after creating them. This tool replicates the datasets, sheets, visuals, parameters, and even calculated fields. Wherever there are conflicts, i.e. if there are two calculated fields with the same name in both of them but different expressions then it will throw an exception; it follows a similar behavior for parameters as well.
+
+Here's an example:
+Use case: A user wants to merge `analysis-id-1` with `analysis-id-2` along with all the calculated fields, parameters and sheets.
+
+Steps:
+1. Login to AWS Lambda console and choose the `analysis-merge-function`
+2. Navigate to `Configuration` tab and choose `Environment Variables`
+3. Pass the variables as below:
+        `REGION`: us-east-1 
+        `ACCOUNT_ID`: 0123456789
+        `USER_NAME`: user-name
+        `FIRST_ANALYSIS_ID`: analysis-id-1
+        `SECOND_ANALYSIS_ID`: analysis-id-2
+        `TARGET_ANALYSIS_NAME`: Merged Analysis
+        `TARGET_ANALYSIS_ID`: merged-analysis-id
+        `ACTION`: Create
+4. Create a sample test event
+5. Hit test and voila! You should see a message saying `Analysis merged-analysis-id created successfully.`
+
+
+Here is the high level overview of the architecture:
+
+<img width="1398" alt="image" src="https://user-images.githubusercontent.com/30472234/235336933-cb0bc542-3e75-49b2-b3de-acb7a6fa656e.png">
+
+
+## Deployment steps
+
+This repoository helps admins setup self service reporting capability for their readers.
 
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
@@ -79,7 +112,7 @@ To add additional dependencies, for example other CDK libraries, just add
 them to your `setup.py` file and rerun the `pip install -r requirements.txt`
 command.
 
-## Useful commands
+### Useful commands
 
  * `cdk ls`          list all stacks in the app
  * `cdk synth`       emits the synthesized CloudFormation template
@@ -87,4 +120,4 @@ command.
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
 
-Enjoy!
+ Enjoy!
