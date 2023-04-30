@@ -29,7 +29,8 @@ Steps:
 
 Here is the high level overview of the architecture:
 
-<img width="1398" alt="image" src="https://user-images.githubusercontent.com/30472234/235336933-cb0bc542-3e75-49b2-b3de-acb7a6fa656e.png">
+<img width="317" alt="image" src="https://user-images.githubusercontent.com/30472234/235339232-b8e5bbc4-93c6-4a43-ba3a-559031424913.png">
+
 
 
 ## Deployment steps
