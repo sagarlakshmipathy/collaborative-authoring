@@ -1,5 +1,5 @@
 {
-  "app": "python3 collaborative_authoring.py",
+  "app": "python3 bin/collaborative_authoring.py",
   "watch": {
     "include": [
       "**"
